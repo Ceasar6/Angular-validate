@@ -1,0 +1,60 @@
+<br>
+<form [formGroup]="formLogin" (ngSubmit)="add()">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email</label>
+    <input type="email" class="form-control" formControlName="email" id="exampleInputEmail1"
+           aria-describedby="emailHelp">
+    <div *ngIf="email.invalid&&(email.touched||email.dirty)" class="alert alert-danger">
+      <div *ngIf="email.errors.required">
+        <p>
+          Không được bỏ trống Email
+        </p>
+      </div>
+      <div *ngIf="email.errors.email">
+        <p>
+          Email chưa đúng định dạng
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" formControlName="password" name="password"
+           id="exampleInputPassword1">
+  </div>
+  <div *ngIf="password.invalid&&(password.touched||password.dirty)" class="alert alert-danger">
+    <div *ngIf="password.errors.required" >
+      <p>
+        Không được bỏ trống Password
+      </p>
+    </div>
+    <div *ngIf="password.errors.minlength">
+      <p>
+        Password tối thiểu 6 kí tự
+      </p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword3">Confirm Password</label>
+    <input type="password" class="form-control" formControlName="confirmPassword" name='confirmPassword'
+           id="exampleInputPassword3">
+  </div>
+  <div *ngIf="confirmPassword.invalid && confirmPassword.touched" class="alert alert-danger">
+    <div *ngIf="confirmPassword.errors.required" >
+      <p>
+        Không được bỏ trống Password
+      </p>
+    </div>
+    <div *ngIf="confirmPassword.errors.matchPassword">
+      <p>
+        Password k dung!!
+      </p>
+    </div>
+  </div>
+<!--  <pre>-->
+<!--    {{formLogin.errors | json}}-->
+<!--  </pre>-->
+
+  <button type="submit" [disabled]="formLogin.invalid" class="btn btn-primary">Submit</button>
+</form>
+
